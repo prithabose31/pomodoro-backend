@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="PomodoroApp.API/PomodoroApp.API.csproj" />
+  <Project Path="PomodoroApp.Application/PomodoroApp.Application.csproj" />
+  <Project Path="PomodoroApp.Core/PomodoroApp.Core.csproj" />
+  <Project Path="PomodoroApp.Infrastructure/PomodoroApp.Infrastructure.csproj" />
+</Solution>
