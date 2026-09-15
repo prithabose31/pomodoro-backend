@@ -2,16 +2,21 @@
 .vs/
 *.user
 *.suo
+*.userosscache
+*.sln.docstates
 
-# .NET build output
+# .NET build files
 **/bin/
 **/obj/
 
-# Secrets
+# Environment / secrets
 .env
 .env.*
+!.env.example
+
+# Development configuration containing secrets
 appsettings.Development.json
 
-# OS
+# OS files
 .DS_Store
 Thumbs.db

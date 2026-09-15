@@ -12,5 +12,6 @@ namespace PomodoroApp.Core.Interfaces
         Task AddSubtasksAsync(List<Subtask> subtasks);
         Task DeleteSubtasksByTaskAsync(Guid taskId);
         Task LogTimeAsync(Guid taskId, int minutes);
+        Task UpdateWeeklyGoalAsync(Guid taskId, Guid userId, int weeklyGoalMinutes);
     }
 }

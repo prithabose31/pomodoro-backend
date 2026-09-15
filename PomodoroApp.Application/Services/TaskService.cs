@@ -112,5 +112,20 @@ namespace PomodoroApp.Application.Services
                 IsCompleted = s.IsCompleted
             }).ToList()
         };
+
+        public async Task UpdateWeeklyGoalAsync(
+        Guid taskId,
+        Guid userId,
+        int weeklyGoalMinutes)
+        {
+             if (weeklyGoalMinutes < 0)
+             throw new ArgumentException("Weekly goal cannot be negative.");
+
+                await _taskRepository.UpdateWeeklyGoalAsync(
+                    taskId,
+                    userId,
+                    weeklyGoalMinutes
+                );
+        }
     }
 }

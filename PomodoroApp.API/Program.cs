@@ -7,7 +7,7 @@ using PomodoroApp.Infrastructure.Repositories;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(
+    options.UseNpgsql(
         builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<AuthService>();
@@ -41,16 +41,7 @@ builder.Services.AddAuthentication(options =>
     options.DefaultScheme = "Cookies";
     options.DefaultChallengeScheme = "Cookies";
 })
-.AddCookie("Cookies")
-.AddGoogle("Google", options =>
-{
-    options.ClientId = builder.Configuration["OAuth:Google:ClientId"]!;
-    options.ClientSecret = builder.Configuration["OAuth:Google:ClientSecret"]!;
-    options.CallbackPath = "/api/auth/google/callback";
-    options.Scope.Add("email");
-    options.Scope.Add("profile");
-    options.SaveTokens = true;
-});
+.AddCookie("Cookies");
 
 var app = builder.Build();
 

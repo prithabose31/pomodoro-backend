@@ -81,5 +81,22 @@ namespace PomodoroApp.Infrastructure.Repositories
                 await _context.SaveChangesAsync();
             }
         }
+        public async Task UpdateWeeklyGoalAsync(
+            Guid taskId,
+            Guid userId,
+            int weeklyGoalMinutes)
+        {
+            var task = await _context.Tasks
+                .FirstOrDefaultAsync(t =>
+                    t.Id == taskId &&
+                    t.UserId == userId);
+
+            if (task == null)
+                throw new KeyNotFoundException("Task not found.");
+
+            task.WeeklyGoalMinutes = Math.Max(0, weeklyGoalMinutes);
+
+            await _context.SaveChangesAsync();
+        }
     }
 }

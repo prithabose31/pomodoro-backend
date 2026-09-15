@@ -116,5 +116,35 @@ namespace PomodoroApp.API.Controllers
                 return Unauthorized();
             }
         }
+        [HttpPut("{id}/weekly-goal")]
+        public async Task<IActionResult> UpdateWeeklyGoal(
+        Guid id,
+        [FromBody] UpdateWeeklyGoalDto dto)
+        {
+            try
+            {
+                var userId = GetUserId();
+
+                await _taskService.UpdateWeeklyGoalAsync(
+                    id,
+                    userId,
+                    dto.WeeklyGoalMinutes
+                );
+
+                return Ok(new
+                {
+                    taskId = id,
+                    weeklyGoalMinutes = dto.WeeklyGoalMinutes
+                });
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { message = ex.Message });
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return Unauthorized();
+            }
+        }
     }
 }
